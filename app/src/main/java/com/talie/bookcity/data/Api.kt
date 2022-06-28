@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface Api {
 
 
-    @FormUrlEncoded
+
     @POST("books")
     suspend fun addBook(@Body book:BookAdd): Response<*>?
 

@@ -20,7 +20,7 @@ class BookDetailViewModel @Inject constructor(private val bookRepository: BookRe
 
     private val book = MutableLiveData<Book>()
     private val TAG: String = "BookVListViewModel"
-    fun fetchBookById(id:String) {
+    fun fetchBookById(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             bookRepository.getBookById(id).let { response ->
                 if (response.isSuccessful) {
@@ -29,30 +29,32 @@ class BookDetailViewModel @Inject constructor(private val bookRepository: BookRe
             }
         }
     }
-    fun observe():LiveData<Book> =book
-    fun addBook(addbook:BookAdd){
+
+    fun observe(): LiveData<Book> = book
+    fun addBook(addbook: BookAdd) {
         viewModelScope.launch(Dispatchers.IO) {
-            bookRepository.addBook(addbook).let{response->
-                {  }
-
-            }
-        }
-    }
-    fun upDateBook(id: String,bookUpdate: BookUpdate){
-        viewModelScope.launch(Dispatchers.IO){
-            bookRepository.updateBook(id,bookUpdate).let {
+            bookRepository.addBook(addbook).let { response ->
+                { }
 
             }
         }
     }
 
-    fun deleteBook(id: String){
+    fun updateBook(id: String, bookUpdate: BookUpdate) {
+        viewModelScope.launch(Dispatchers.IO) {
+            bookRepository.updateBook(id, bookUpdate)?.let { response ->
+                if (response.isSuccessful) {
+
+                }
+            }
+        }
+    }
+
+    fun deleteBook(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             bookRepository.deleteBook(id)
         }
     }
-
-
 
 
 }

@@ -72,17 +72,17 @@ class BookDetailFragment : Fragment() {
 
         binding.btnAddBook.setOnClickListener {
             val book = BookAdd(
-                binding.edtTitle.toString(),
-                binding.edtAuthor.toString(),
-                binding.edtGenre.toString(),
-                binding.edtYearPublished.toString()
+                binding.edtTitle.text.toString(),
+                binding.edtAuthor.text.toString(),
+                binding.edtGenre.text.toString(),
+                binding.edtYearPublished.text.toString().toInt()
             )
             bookDetailViewModel.addBook(book)
         }
 
         binding.btnUpdateBook.setOnClickListener {
             val bookUpdate = BookUpdate(true)
-            bookDetailViewModel.upDateBook(args.id.toString(), bookUpdate)
+            bookDetailViewModel.updateBook(args.id.toString(), bookUpdate)
         }
         binding.btnDelete.setOnClickListener {
 
